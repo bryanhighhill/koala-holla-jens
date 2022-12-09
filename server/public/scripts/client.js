@@ -21,7 +21,7 @@ function setupClickListeners() {
       name: $('#nameIn').val(),
       age: $('#ageIn').val(),
       gender: $('#genderIn').val(),
-      readyForTransfer: $('#readyForTransferIn').val(),
+      readyToTransfer: $('#readyForTransferIn').val(),
       notes: $('#notesIn').val(),
     };
     // call saveKoala with the new obejct
@@ -51,7 +51,7 @@ function saveKoala( newKoala ){
 $.ajax({
   type: 'POST',
   url: '/koalas',
-  data: newKoala
+  data: newKoala //req.body is everything in ajax post request
 }).then(function(){
   console.log('req for newKoala');
 }).catch(error);
