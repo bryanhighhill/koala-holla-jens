@@ -7,7 +7,7 @@ function onReady() {
   console.log( 'JQ' );
   // Establish Click Listeners
   $( '#addButton' ).on( 'click', setupClickListeners);
-  
+  getKoalas();
 }; // end doc ready
 
 function setupClickListeners() {
@@ -21,7 +21,7 @@ function setupClickListeners() {
       name: $('#nameIn').val(),
       age: $('#ageIn').val(),
       gender: $('#genderIn').val(),
-      readyToTransfer: $('#readyForTransferIn').val(),
+      readyToTransfer: $('#readyToTransferIn').val(),
       notes: $('#notesIn').val(),
     };
     // call saveKoala with the new obejct
@@ -29,7 +29,6 @@ function setupClickListeners() {
   }; 
 
 
-getKoalas();
 //GET Koala list from server
 //send to append to DOM
 function getKoalas(){
@@ -54,6 +53,33 @@ $.ajax({
   data: newKoala //req.body is everything in ajax post request
 }).then(function(){
   console.log('req for newKoala');
-}).catch(error);
-  console.log(error);
+  getKoalas();
+// }).catch(error);
+//   console.log(error);
+})
 }
+
+function appendToDom(array){
+  $('#viewKoalas').empty();
+  // for (let koala of array){
+  for (let i=0; i < array.length; i++) {
+    $('#viewKoalas').append(`
+    <tr>
+      <td>
+        ${array[i].name}      
+      </td>
+      <td>
+        ${array[i].age}      
+      </td>
+      <td>
+        ${array[i].gender}      
+      </td>
+      <td>
+        ${array[i].ready_to_transfer}      
+      </td>
+      <td>
+        ${array[i].notes}      
+      </td>
+    </tr>
+  `)};
+};
