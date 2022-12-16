@@ -25,8 +25,8 @@ pool.on('error', (error)=> {
 
 // GET request from database
 koalaRouter.get('/',(req, res)=> {
-    let queryText = 'SELECT * FROM koalas;'; 
-    pool.query(queryText)
+    let queryText = 'SELECT * FROM koalas ORDER BY id asc;'; 
+    pool.query(queryText) 
     .then((result) => { 
         console.log('results from DB', result);
         res.send(result.rows); 
@@ -75,7 +75,31 @@ koalaRouter.post('/', (req, res) =>{
 })
 
 // PUT
+koalaRouter.put('/ready_to_transfer/:id', (req, res) => {
+    console.log(`this should be our PUT request id: ${req.params.id}`);
+    let id = req.params.id;
+    let transferStatus = req.body.ready_to_transfer;
 
+    if (transferStatus == 'N') {
+        console.log('changing to Y');
+        queryText = `UPDATE "koalas" SET "ready_to_transfer"='Y' WHERE "id"=${id};`; 
+    } else if (transferStatus == 'Y') {
+        console.log('changing to N');
+        queryText = `UPDATE "koalas" SET "ready_to_transfer"='N' WHERE "id"=${id};`;
+    } else {
+        res.sendStatus(500);
+        return;
+    }
+    pool.query(queryText)
+    .then((dbResponse) => {
+        console.log(`response from db with PUT request: ${dbResponse}`);
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('error from server for PUT request', error);
+      res.sendStatus(500);
+    })
+})
 
 // DELETE
 

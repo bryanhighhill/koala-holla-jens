@@ -65,6 +65,7 @@ function appendToDom(array){
   // for (let koala of array){
     for (let i=0; i < array.length; i++) {
     let id = array[i].id;
+    let transfer = array[i].ready_to_transfer;
     console.log(`this is our current id: ${id}`);
     $('#viewKoalas').append(`
     <tr>
@@ -84,7 +85,7 @@ function appendToDom(array){
         ${array[i].notes}      
       </td>
       <td>
-        <button class="transfer-yes" data-id=${id}>Ready To Transfer</button>
+        <button class="transfer-yes" data-transfer=${transfer} data-id=${id}>Ready To Transfer</button>
       </td>
     </tr>
   `)};
@@ -92,11 +93,17 @@ function appendToDom(array){
 
 function readyToTransfer() {
   console.log('readyToTransfer');
-  //const id
+  
+  const id = $(this).data('id');
+  const transfer = $(this).data('transfer');
+
+  console.log(id);
+  console.log(transfer);
+  
   $.ajax({
     type: 'PUT',
     url: `/koalas/ready_to_transfer/${id}`,
-    data: {ready_to_transfer: 'Y'}
+    data: {ready_to_transfer: `${transfer}`}
   }).then(function() {
     getKoalas();
   }).catch(function(error) {

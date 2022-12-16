@@ -41,9 +41,9 @@ Koala Holla has provided a table of their current inventory:
 
 [x] - They need the ability for mark a Koala ready for transfer. 
 
-- Each koala in your UI needs a button in that reads 'Ready for Transfer'. 
+[x] - Each koala in your UI needs a button in that reads 'Ready for Transfer'. 
 
-- When the user clicks on the button, it should update the database for the specific Koala.
+[x] - When the user clicks on the button, it should update the database for the specific Koala.
 
 - The 'Ready for Transfer' button should only appear for Koalas that haven't yet been marked ready for transfer.
 
