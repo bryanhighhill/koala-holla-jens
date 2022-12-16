@@ -102,5 +102,18 @@ koalaRouter.put('/ready_to_transfer/:id', (req, res) => {
 })
 
 // DELETE
+koalaRouter.delete('/:id', (req, res) => {
+    console.log(`this is in the delete request id; ${req.params.id}`);
+    const queryText = `DELETE FROM "koalas" WHERE id = ${req.params.id};`;
+    pool.query(queryText)
+    .then((result) => {
+        console.log(result)
+        res.sendStatus(204);
+    })
+    .catch((error) => {
+        console.log('error making query', error);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = koalaRouter;

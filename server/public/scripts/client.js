@@ -9,6 +9,7 @@ function onReady() {
   $( '#addButton' ).on( 'click', setupClickListeners);
   getKoalas();
   $('#viewKoalas').on('click', '.transfer-yes', readyToTransfer);
+  $('#viewKoalas').on('click', '.delete', deleteKoala);
 }; // end doc ready
 
 function setupClickListeners() {
@@ -87,6 +88,9 @@ function appendToDom(array){
       <td>
         <button class="transfer-yes" data-transfer=${transfer} data-id=${id}>Ready To Transfer</button>
       </td>
+      <td>
+        <button class="delete" data-id=${id}>Delete</button>
+      </td>
     </tr>
   `)};
 };
@@ -99,7 +103,7 @@ function readyToTransfer() {
 
   console.log(id);
   console.log(transfer);
-  
+
   $.ajax({
     type: 'PUT',
     url: `/koalas/ready_to_transfer/${id}`,
