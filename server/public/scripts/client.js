@@ -114,3 +114,16 @@ function readyToTransfer() {
     console.log('error with putting', error);
   })
 }
+
+function deleteKoala(){
+  const id = $(this).data('id');
+
+  $.ajax({
+    type: 'DELETE',
+    url: `/koalas/${id}`
+  }).then(function(){
+    getKoalas();
+  }).catch(function(error){
+    console.log('error with deleting, ', error);
+  })
+}

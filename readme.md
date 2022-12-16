@@ -53,7 +53,7 @@ Upon completion of the project you'll need to provide not only the source (via G
 
 ### STRETCH GOALS
 
-1. Ability to delete a specific Koala from the database.  
+[x] 1. Ability to delete a specific Koala from the database.  
 2. Confirmation dialog before deleting (research SweetAlert).
 [x] 3. Ability to make koalas toggle between ready for transfer and NOT ready for transfer.
 4. Add form validation, additional styling and a README.md.
