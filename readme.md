@@ -30,19 +30,16 @@ Koala Holla has provided a table of their current inventory:
 
 - They need the ability to add a Koala to the database.
 [x]  // need to setup database  db is called "Koala Holla"
-  // build functions in client.js to grab info from DOM
-  // post request from server to database with DOM info  
+[x]  // build functions in client.js to grab info from DOM
+[x]  // post request from server to database with DOM info  
 
-- Make a form with the appropriate info.
+[x] - Make a form with the appropriate info.
 
-- Save the koala in the database. 
+[x] - Save the koala in the database. 
 
-Think about what data types you'll be needing for your table columns. 
+[x] Think about what data types you'll be needing for your table columns. 
 
-
-
-
-- They need the ability for mark a Koala ready for transfer. 
+[x] - They need the ability for mark a Koala ready for transfer. 
 
 - Each koala in your UI needs a button in that reads 'Ready for Transfer'. 
 

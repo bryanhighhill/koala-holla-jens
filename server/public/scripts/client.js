@@ -8,6 +8,7 @@ function onReady() {
   // Establish Click Listeners
   $( '#addButton' ).on( 'click', setupClickListeners);
   getKoalas();
+  $('#viewKoalas').on('click', '.transfer-yes', readyToTransfer);
 }; // end doc ready
 
 function setupClickListeners() {
@@ -62,7 +63,9 @@ $.ajax({
 function appendToDom(array){
   $('#viewKoalas').empty();
   // for (let koala of array){
-  for (let i=0; i < array.length; i++) {
+    for (let i=0; i < array.length; i++) {
+    let id = array[i].id;
+    console.log(`this is our current id: ${id}`);
     $('#viewKoalas').append(`
     <tr>
       <td>
@@ -80,6 +83,23 @@ function appendToDom(array){
       <td>
         ${array[i].notes}      
       </td>
+      <td>
+        <button class="transfer-yes" data-id=${id}>Ready To Transfer</button>
+      </td>
     </tr>
   `)};
 };
+
+function readyToTransfer() {
+  console.log('readyToTransfer');
+  //const id
+  $.ajax({
+    type: 'PUT',
+    url: `/koalas/ready_to_transfer/${id}`,
+    data: {ready_to_transfer: 'Y'}
+  }).then(function() {
+    getKoalas();
+  }).catch(function(error) {
+    console.log('error with putting', error);
+  })
+}
