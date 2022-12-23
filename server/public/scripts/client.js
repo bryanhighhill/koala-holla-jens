@@ -162,6 +162,10 @@ function setupClickListeners() {
           alert ('age cannot be blank');
           return true;
         } 
+        if (/[a-zA-Z]/.test(koalaAge)) {
+          alert('age must be a number');
+          return true;
+        }
         if (koalaGender == '') {
           alert ('gender cannot be blank');
           return true;
