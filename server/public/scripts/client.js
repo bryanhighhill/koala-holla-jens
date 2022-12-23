@@ -117,13 +117,25 @@ function readyToTransfer() {
 
 function deleteKoala(){
   const id = $(this).data('id');
-
-  $.ajax({
-    type: 'DELETE',
-    url: `/koalas/${id}`
-  }).then(function(){
-    getKoalas();
-  }).catch(function(error){
-    console.log('error with deleting, ', error);
+  
+  swal({
+    title: 'Are you sure you want to delete this koala?',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true
+  })
+  .then((willDelete) =>{
+    if (willDelete) {
+      $.ajax({
+        type: 'DELETE',
+        url: `/koalas/${id}`
+      }).then(function(){
+        getKoalas();
+      }).catch(function(error){
+        console.log('error with deleting, ', error);
+      })
+    } else {
+      return;
+    }   
   })
 }
