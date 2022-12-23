@@ -10,6 +10,7 @@ function onReady() {
   getKoalas();
   $('#viewKoalas').on('click', '.transfer-yes', readyToTransfer);
   $('#viewKoalas').on('click', '.delete', deleteKoala);
+  $('#viewKoalas').on('click', '.update', updateData);
 }; // end doc ready
 
 function setupClickListeners() {
@@ -73,28 +74,47 @@ function setupClickListeners() {
         let id = array[i].id;
         let transfer = array[i].ready_to_transfer;
         console.log(`this is our current id: ${id}`);
+
+        let optionValue = $('#koalaColumns option:selected').text();
+        
         $('#viewKoalas').append(`
         <tr>
         <td>
-        ${array[i].name}      
+          ${array[i].name}      
         </td>
         <td>
-        ${array[i].age}      
+          ${array[i].age}      
         </td>
         <td>
-        ${array[i].gender}      
+          ${array[i].gender}      
         </td>
         <td>
-        ${array[i].ready_to_transfer}      
+          ${array[i].ready_to_transfer}      
         </td>
         <td>
-        ${array[i].notes}      
+          ${array[i].notes}      
         </td>
         <td>
-        <button class="transfer-yes" data-transfer=${transfer} data-id=${id}>Ready To Transfer</button>
+          <button class="transfer-yes" data-transfer=${transfer} data-id=${id}>Ready To Transfer</button>
         </td>
         <td>
-        <button class="delete" data-id=${id}>Delete</button>
+          <button class="delete" data-id=${id}>Delete</button>
+        </td>
+        <td>
+          <label for="koalas">What section do you want to update?</label>
+
+          <select name="koala" id="koalaColumns">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="gender">Gender</option>
+            <option value="notes">Notes</option>
+          </select>
+        </td>
+        <td>
+          <input class="inputs" type="text" id="${id}" value="" placeholder="new content">
+        </td>
+        <td>
+          <button data-option="${optionValue}" class="update" data-id=${id}>Submit</button>
         </td>
         </tr>
         `)};
@@ -119,6 +139,18 @@ function setupClickListeners() {
           console.log('error with putting', error);
         })
       }
+
+      function updateData() {
+      const id = $(this).data('id');
+      const value = $(this).data('option');
+      console.log(`in updateData function with ${value} and id: ${id}`);
+
+     
+      }
+
+      
+
+
       
       function deleteKoala(){
         const id = $(this).data('id');
