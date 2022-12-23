@@ -170,6 +170,10 @@ function setupClickListeners() {
           alert ('readyToTransfer cannot be blank');
           return true;
         }
+        if (readyToTransfer != 'Y' && readyToTransfer != 'N') {
+          alert ('Ready To Transfer must have a value of Y or N');
+          return true;
+        }
         if (notes == '') {
           alert ('notes cannot be blank');
           return true;

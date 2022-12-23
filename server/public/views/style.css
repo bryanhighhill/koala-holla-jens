@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(210, 210, 210);
+    color: rgb(30, 83, 30)
+}
+
+.delete {
+    background-color: rgb(255, 170, 109);
+    border: none;
+}
+
+#addKoala {
+    border-style: inset;
+    border-width: 5px;
+}
+
+#addButton {
+    border: none;
+    background-color: rgb(181, 253, 194);
+}
+
+.transfer-yes {
+    background-color: rgb(107, 219, 241);
+    border: none;
+}
+
+#viewKoalas {
+    text-align: center;
+}
+
+th {
+    padding: 15px;
+}
